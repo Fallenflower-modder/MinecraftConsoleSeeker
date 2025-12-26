@@ -1,0 +1,18 @@
+{
+    "fallenflowers_console_logger.command.fallenflowers_console_logger.description": "Control which log levels are displayed in chat.",
+    "fallenflowers_console_logger.command.consoleseeker.usage": "/consoleseeker <info|warn|error> <on|off>",
+    "fallenflowers_console_logger.command.consoleseeker.invalid_level": "Invalid log level. Use info, warn or error.",
+    "fallenflowers_console_logger.command.consoleseeker.success": "Log level %s has been turned %s. Current status: %s",
+    "fallenflowers_console_logger.command.consoleseeker.status.title": "=== Log Seeker Status ===",
+    "fallenflowers_console_logger.command.consoleseeker.status.enabled_levels": "Enabled levels: %s",
+    "fallenflowers_console_logger.command.consoleseeker.status.subscription": "Your subscription: %s",
+    "fallenflowers_console_logger.command.consoleseeker.status.subscribed": "SUBSCRIBED",
+    "fallenflowers_console_logger.command.consoleseeker.status.unsubscribed": "NOT SUBSCRIBED",
+    "fallenflowers_console_logger.log.chat.prefix": "[Log]",
+    "fallenflowers_console_logger.log.level.info": "INFO",
+    "fallenflowers_console_logger.log.level.warn": "WARN",
+    "fallenflowers_console_logger.log.level.error": "ERROR",
+    "fallenflowers_console_logger.log.manager.no_levels_enabled": "NONE",
+    "fallenflowers_console_logger.message.toggle.on": "ON",
+    "fallenflowers_console_logger.message.toggle.off": "OFF"
+}

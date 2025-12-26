@@ -1,0 +1,18 @@
+{
+    "fallenflowers_console_logger.command.fallenflowers_console_logger.description": "控制在聊天栏中显示哪些级别的日志。",
+    "fallenflowers_console_logger.command.consoleseeker.usage": "/consoleseeker <info|warn|error> <on|off>",
+    "fallenflowers_console_logger.command.consoleseeker.invalid_level": "无效的日志级别。请使用 info、warn 或 error。",
+    "fallenflowers_console_logger.command.consoleseeker.success": "已将 %s 级别日志显示%s。当前状态: %s",
+    "fallenflowers_console_logger.command.consoleseeker.status.title": "=== 日志追踪器状态 ===",
+    "fallenflowers_console_logger.command.consoleseeker.status.enabled_levels": "启用级别: %s",
+    "fallenflowers_console_logger.command.consoleseeker.status.subscription": "你的订阅: %s",
+    "fallenflowers_console_logger.command.consoleseeker.status.subscribed": "已订阅",
+    "fallenflowers_console_logger.command.consoleseeker.status.unsubscribed": "未订阅",
+    "fallenflowers_console_logger.log.chat.prefix": "[日志]",
+    "fallenflowers_console_logger.log.level.info": "信息",
+    "fallenflowers_console_logger.log.level.warn": "警告",
+    "fallenflowers_console_logger.log.level.error": "错误",
+    "fallenflowers_console_logger.log.manager.no_levels_enabled": "无",
+    "fallenflowers_console_logger.message.toggle.on": "开启",
+    "fallenflowers_console_logger.message.toggle.off": "关闭"
+}
