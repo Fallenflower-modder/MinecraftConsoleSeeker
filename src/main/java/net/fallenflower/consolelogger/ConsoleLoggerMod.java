@@ -1,11 +1,8 @@
-
 package net.fallenflower.consolelogger;
 
-import net.fallenflower.consolelogger.util.LocalizationHelper;
-
+import net.fallenflower.consolelogger.config.ConsoleLoggerConfig;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -21,13 +18,20 @@ public class ConsoleLoggerMod {
     public static final Logger LOGGER = LogManager.getLogger();
 
     public ConsoleLoggerMod() {
+        ConsoleLoggerConfig.register();
+        
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
         MinecraftForge.EVENT_BUS.register(this);
         setupChatAppender();
+        
+        LOGGER.info("ConsoleSeeker Mod initialized with configurable log filtering.");
     }
 
     private void onClientSetup(final FMLClientSetupEvent event) {
         LOGGER.info("[ConsoleLogger] 日志到聊天栏系统已加载。使用 /consoleseeker 命令控制。");
+        LOGGER.info("[ConsoleLogger] 配置：最大日志长度={}，过滤聊天日志={}", 
+            ConsoleLoggerConfig.getMaxLogLength(), 
+            ConsoleLoggerConfig.shouldFilterChatLogs());
     }
 
     @SubscribeEvent

@@ -155,6 +155,10 @@ Writing Output: C:\Users\ASUS\MCreatorWorkspaces\console_seeker\build\reobfJar\o
   net/fallenflower/consolelogger/ConsoleSeekerCommand$1.class
   net/fallenflower/consolelogger/ConsoleSeekerCommand.class
   net/fallenflower/consolelogger/LogToChatManager.class
+  net/fallenflower/consolelogger/config/
+  net/fallenflower/consolelogger/config/ConfigManager.class
+  net/fallenflower/consolelogger/config/ConsoleLoggerConfig.class
   net/fallenflower/consolelogger/util/
   net/fallenflower/consolelogger/util/LocalizationHelper.class
+  net/fallenflower/consolelogger/util/LogFilter.class
   pack.mcmeta

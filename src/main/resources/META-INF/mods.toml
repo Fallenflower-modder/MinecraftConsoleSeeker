@@ -4,9 +4,9 @@ license="GPL-3.0"
 
 [[mods]]
 modId="fallenflowers_console_logger"
-version="2.0.6"
+version="2.0.9"
 displayName="Console Seeker"
-displayURL="https://github.com/Fallenflower-modder?tab=repositories"
+displayURL="https://github.com/Fallenflower-modder/MinecraftConsoleSeeker/tree/Release"
 credits="DrownedCloud"
 authors="DrownedCloud"
 

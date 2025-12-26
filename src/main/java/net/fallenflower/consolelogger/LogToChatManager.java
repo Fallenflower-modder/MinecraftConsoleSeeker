@@ -1,16 +1,17 @@
-
 package net.fallenflower.consolelogger;
 
+import net.fallenflower.consolelogger.config.ConsoleLoggerConfig;
 import net.fallenflower.consolelogger.util.LocalizationHelper;
-
+import net.fallenflower.consolelogger.util.LogFilter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.server.ServerLifecycleHooks;
-import net.fallenflower.consolelogger.util.LocalizationHelper;
 import org.apache.logging.log4j.Level;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -82,20 +83,35 @@ public class LogToChatManager {
             return; 
         }
 
-        MutableComponent chatMessage = LocalizationHelper.getComponent("log.chat.prefix")
-            .withStyle(ChatFormatting.GRAY)
-            .append(Component.literal("[")
-                .append(LocalizationHelper.getComponent("log.level." + level.name().toLowerCase())
-                    .withStyle(getLevelColor(level), ChatFormatting.BOLD))
-                .append("] "))
-            .append(Component.literal(truncateLogMessage(formattedMessage))
-                .withStyle(ChatFormatting.WHITE));
+        MutableComponent chatMessage = buildChatMessage(level, formattedMessage);
 
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             if (player.hasPermissions(2) && isPlayerSubscribed(player.getScoreboardName())) {
                 player.sendSystemMessage(chatMessage);
             }
         }
+    }
+    
+    private static MutableComponent buildChatMessage(Level level, String formattedMessage) {
+
+        String truncatedMessage = LogFilter.truncateLogMessage(formattedMessage);
+        
+        MutableComponent message = LocalizationHelper.getComponent("log.chat.prefix")
+            .withStyle(ChatFormatting.GRAY);
+        
+        if (ConsoleLoggerConfig.shouldEnableTimestamp()) {
+            String timestamp = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+            message.append(Component.literal("[" + timestamp + "] ").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        
+        message.append(Component.literal("[")
+            .append(LocalizationHelper.getComponent("log.level." + level.name().toLowerCase())
+                .withStyle(getLevelColor(level), ChatFormatting.BOLD))
+            .append("] "));
+        
+        message.append(Component.literal(truncatedMessage).withStyle(ChatFormatting.WHITE));
+        
+        return message;
     }
 
     private static ChatFormatting getLevelColor(Level level) {
@@ -108,13 +124,5 @@ public class LogToChatManager {
         } else {
             return ChatFormatting.GRAY;
         }
-    }
-
-    private static String truncateLogMessage(String message) {
-        int maxLength = 150;
-        if (message.length() <= maxLength) {
-            return message;
-        }
-        return message.substring(0, maxLength) + "...";
     }
 }

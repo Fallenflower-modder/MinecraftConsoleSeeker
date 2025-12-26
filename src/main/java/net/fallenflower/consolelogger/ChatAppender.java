@@ -1,8 +1,6 @@
-
 package net.fallenflower.consolelogger;
 
-import net.fallenflower.consolelogger.util.LocalizationHelper;
-
+import net.fallenflower.consolelogger.util.LogFilter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Appender;
 import org.apache.logging.log4j.core.Core;
@@ -40,7 +38,10 @@ public class ChatAppender extends AbstractAppender {
 
     @Override
     public void append(LogEvent event) {
-
+        if (LogFilter.shouldFilter(event)) {
+            return; 
+        }
+        
         String formattedMessage = getLayout().toSerializable(event).toString();
         
         new Thread(() -> {
